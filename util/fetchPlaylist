@@ -1,0 +1,11 @@
+export const fetchPlaylist = async (text: string) => {
+  const res = await fetch("/api/openai/songs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text }),
+  }).then((res) => res.json());
+
+  return res;
+};
