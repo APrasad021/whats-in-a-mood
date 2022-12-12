@@ -1,11 +1,12 @@
-import { MySession } from "../types/types";
+import { Session } from 'next-auth'
 
-export const customGet = async (url: string, session: MySession | null) => {
+export const getWithAccessToken = async (url: string, session: Session) => {
   const res = await fetch(url, {
     headers: {
+      // @ts-ignore
       Authorization: `Bearer ${session.user.accessToken}`,
     },
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 
-  return res;
-};
+  return res
+}
