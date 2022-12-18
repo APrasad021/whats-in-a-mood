@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { createPlaylistName } from '../util/createPlaylistName'
 import { Playlist, SpotifySong } from '../util/types'
 
 type InitialPlaylistData = {
@@ -19,6 +21,7 @@ type ContextProps = {
   createPlaylistOnSpotify: (playlistData: CreatePlaylistData) => void
   initialPlaylistDescription: string
   archiveCurrentPlaylist: () => void
+  playlists: Playlist[]
 }
 
 const SiteContext = createContext({} as ContextProps)
@@ -66,10 +69,14 @@ export const SiteContextProvider = ({ children }: any) => {
   }
 
   const archiveCurrentPlaylist = () => {
-    //TODO
+    if (songs === undefined || songs.length === 0) return
+
     const playlist = {
-      id: playlistId,
-      name: playlistName,
+      id: playlistId || uuidv4(),
+      name:
+        playlistName !== ''
+          ? playlistName
+          : createPlaylistName(initialPlaylistDescription),
       description: playlistDescription,
       numSongs: numSongs,
       initialPlaylistDescription: initialPlaylistDescription,
@@ -96,6 +103,7 @@ export const SiteContextProvider = ({ children }: any) => {
         createPlaylistOnSpotify,
         initialPlaylistDescription,
         archiveCurrentPlaylist,
+        playlists,
       }}
     >
       {children}

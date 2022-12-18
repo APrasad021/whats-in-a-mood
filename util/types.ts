@@ -16,6 +16,10 @@ export type SpotifySong = {
       url: string
     }[]
   }
+  external_urls: {
+    spotify: string
+  }
+  preview_url: string
 }
 
 export type Session = {

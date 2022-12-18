@@ -1,0 +1,74 @@
+.playlist--preview-image {
+  transform: perspective(800px) rotateY(25deg);
+  position: relative;
+}
+
+.playlist-preview__image_container {
+  position: relative;
+  height: 75px;
+  overflow: clip;
+}
+
+.playlist--preview-image:nth-child(4) {
+  right: 135px;
+}
+
+.playlist--preview-image:nth-child(3) {
+  right: 90px;
+}
+
+.playlist--preview-image:nth-child(2) {
+  right: 45px;
+}
+
+.images {
+  max-height: 100px;
+}
+
+.playlist-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: unset;
+  text-align: left;
+  max-height: 175px;
+  gap: 16px;
+}
+
+.image {
+  height: 80px;
+  width: 80px;
+  border: 3px solid rgba(95, 95, 95, 0.347);
+  border-bottom-width: 10px;
+  -moz-box-shadow: 0 2px 5px rgba(30, 30, 30, 0.25);
+  -webkit-box-shadow: 0 2px 5px rgba(30, 30, 30, 0.25);
+  box-shadow: 0 2px 5px rgba(30, 30, 30, 0.25);
+  z-index: 2;
+  -moz-transition: -moz-transform 0.3s ease-in-out;
+  -o-transition: -o-transform 0.3s ease-in-out;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+.image:first-child {
+  -moz-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  -webkit-transform: rotate(8deg);
+  transform: rotate(8deg);
+}
+.image:nth-child(2) {
+  -moz-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  -webkit-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+.image:nth-child(3) {
+  -moz-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  -webkit-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.image:nth-child(4) {
+  -moz-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+}

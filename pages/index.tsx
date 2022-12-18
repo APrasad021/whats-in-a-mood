@@ -1,15 +1,17 @@
 import { GetServerSideProps } from 'next'
-import { getSession, useSession } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
 import Head from 'next/head'
-import Image from 'next/image'
-import Login from '../components/Login'
 import PlaylistForm from '../components/PlaylistForm'
 import styles from '../styles/Home.module.css'
 import { isAuthenticated } from '../util/isAuthenticated'
+import { useSiteContext } from '../context/Context'
+import PlayListPreview from '../components/PlaylistPreview'
 
 export default function Home({}) {
-  const session = useSession()
-  console.log(session)
+  const { playlists } = useSiteContext()
+  playlists.map((playlist, index) => {
+    console.log(playlist, index)
+  })
   return (
     <div className={styles.container}>
       <Head>
@@ -18,6 +20,15 @@ export default function Home({}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PlaylistForm />
+      {playlists.length > 0 && (
+        <div>
+          {playlists
+            .map((playlist, index) => (
+              <PlayListPreview key={index} playlist={playlist} />
+            ))
+            .reverse()}
+        </div>
+      )}
     </div>
   )
 }

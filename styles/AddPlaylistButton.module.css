@@ -37,3 +37,17 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.add-spotify-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+}
+
+.add-spotify-button-content {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/AddPlaylistButton.module.css'
 import { useSiteContext } from '../context/Context'
+import { createPlaylistName } from '../util/createPlaylistName'
+import SpotifyLogo from '../assets/spotify_logo_v1.svg'
+import Image from 'next/image'
 // TODO
 const AddPlaylistButton = () => {
   const { createPlaylistOnSpotify, songs, initialPlaylistDescription } =
     useSiteContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [name, setPlaylistName] = useState(
-    `"${initialPlaylistDescription}" Playlist`,
+    createPlaylistName(initialPlaylistDescription),
   )
   const [description, setDesciption] = useState('\n\nCreated with GPT-3')
 
   useEffect(() => {
-    setPlaylistName(`"${initialPlaylistDescription}" Playlist`)
+    setPlaylistName(createPlaylistName(initialPlaylistDescription))
     setDesciption('\n\nCreated with GPT-3')
   }, [initialPlaylistDescription])
 
@@ -71,8 +74,16 @@ const AddPlaylistButton = () => {
         </div>
       )}
       <div className="new-playlist-button">
-        <button onClick={() => setIsModalOpen(true)}>
-          Add Playlist to Spotify Account
+        <button onClick={() => setIsModalOpen(true)} className={styles['add-spotify-button']}>
+        <div className={styles['add-spotify-button-content']}>
+              <p>Add Playlist to </p>{' '}
+              <Image
+                alt={'spotify logo'}
+                src={SpotifyLogo}
+                height={20}
+                width={20}
+              />
+            </div>
         </button>
       </div>
     </>
