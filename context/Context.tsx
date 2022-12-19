@@ -22,6 +22,7 @@ type ContextProps = {
   initialPlaylistDescription: string
   archiveCurrentPlaylist: () => void
   playlists: Playlist[]
+  loading: boolean
 }
 
 const SiteContext = createContext({} as ContextProps)
@@ -33,6 +34,7 @@ export const SiteContextProvider = ({ children }: any) => {
   const [playlists, setPlaylists] = useState<Playlist[]>([])
   const [playlistId, setPlaylistId] = useState<string>('')
   const [playlistName, setPlaylistName] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
   const [initialPlaylistDescription, setInitialPlaylistDescription] =
     useState<string>('')
   const [playListGenerateTimestamp, setPlayListGenerateTimestamp] =
@@ -41,6 +43,7 @@ export const SiteContextProvider = ({ children }: any) => {
     useState<number>(0)
 
   const generateInitialPlaylist = async (playlistData: InitialPlaylistData) => {
+    setLoading(true)
     const response = await fetch('/api/playlist/init', {
       method: 'POST',
       body: JSON.stringify(playlistData),
@@ -53,6 +56,7 @@ export const SiteContextProvider = ({ children }: any) => {
     setInitialPlaylistDescription(playlistData.text)
     setNumSongs(songs.length)
     setPlayListGenerateTimestamp(Date.now())
+    setLoading(false)
   }
 
   const createPlaylistOnSpotify = async (data: CreatePlaylistData) => {
@@ -104,6 +108,7 @@ export const SiteContextProvider = ({ children }: any) => {
         initialPlaylistDescription,
         archiveCurrentPlaylist,
         playlists,
+        loading
       }}
     >
       {children}

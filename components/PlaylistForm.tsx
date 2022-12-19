@@ -31,7 +31,7 @@ function PlaylistForm() {
           <form onSubmit={handleSubmit}>
             <label>
               Describe the playlist
-              <input value={inputText} onChange={handleInputChange} className={styles.input} maxLength={20} />
+              <input value={inputText} onChange={handleInputChange} className={styles.input} maxLength={50} />
             </label>
             <input type="submit" value="Submit" className={styles.submit} />
           </form>
