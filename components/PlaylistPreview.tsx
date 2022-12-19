@@ -14,7 +14,6 @@ function PlayListPreview({ playlist }: Props) {
   })
   // convert image set to four images in an array
   const imagePreviews = Array.from(images).slice(0, 4)
-  console.log(images)
   return (
     <div className={styles['playlist-preview']}>
       <div className={styles['images']}>
