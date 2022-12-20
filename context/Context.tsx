@@ -43,20 +43,22 @@ export const SiteContextProvider = ({ children }: any) => {
     useState<number>(0)
 
   const generateInitialPlaylist = async (playlistData: InitialPlaylistData) => {
-    setLoading(true)
-    const response = await fetch('/api/playlist/init', {
-      method: 'POST',
-      body: JSON.stringify(playlistData),
-    }).catch((error) => {
-      console.log(error)
-    })
+    if (!loading) {
+      setLoading(true)
+      const response = await fetch('/api/playlist/init', {
+        method: 'POST',
+        body: JSON.stringify(playlistData),
+      }).catch((error) => {
+        console.log(error)
+      })
 
-    const songs = await response?.json()
-    setSongs(songs)
-    setInitialPlaylistDescription(playlistData.text)
-    setNumSongs(songs.length)
-    setPlayListGenerateTimestamp(Date.now())
-    setLoading(false)
+      const songs = await response?.json()
+      setSongs(songs)
+      setInitialPlaylistDescription(playlistData.text)
+      setNumSongs(songs.length)
+      setPlayListGenerateTimestamp(Date.now())
+      setLoading(false)
+    }
   }
 
   const createPlaylistOnSpotify = async (data: CreatePlaylistData): Promise<boolean> => {

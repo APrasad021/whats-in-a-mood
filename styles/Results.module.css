@@ -28,3 +28,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  .no-songs-text {
+    text-align: center;
+    margin-top: 12px;
+  }

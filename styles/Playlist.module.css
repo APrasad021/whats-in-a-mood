@@ -26,12 +26,8 @@
 }
 
 .playlist-preview {
-  display: inline-flex;
-  align-items: center;
-  justify-content: unset;
-  text-align: left;
+  text-align: center;
   max-height: 175px;
-  gap: 16px;
 }
 
 .image {

@@ -23,6 +23,17 @@ export default function Results({ }) {
     ariaLabel="rings-loading"
   /></div>
 
+  if (songs.length === 0) return (
+    <div className={styles.container}>
+      <p className={styles["no-songs-text"]}>{"Sorry, we couldn't find any songs that matched your mood."}</p>
+      <div>
+        <div className={styles.buttons}>
+          <GenerateAgainButton />
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className={styles.container}>
       <h1>{createPlaylistName(initialPlaylistDescription)}</h1>

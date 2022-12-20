@@ -127,3 +127,8 @@
     filter: invert(1);
   }
 }
+
+.playlist-container {
+  text-align: center;
+  margin-top: 24px;
+}

@@ -26,11 +26,10 @@ function PlaylistForm() {
   return (
     <>
       <div>
-        <h1>Generate a Playlist</h1>
         <div className={styles["form-container"]}>
           <form onSubmit={handleSubmit}>
             <label>
-              Describe the playlist
+              {"What's the mood? Let us know and we'll generate a playlist for you!"}
               <input value={inputText} onChange={handleInputChange} className={styles.input} maxLength={50} />
             </label>
             <input type="submit" value="Submit" className={styles.submit} />

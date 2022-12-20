@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { timeDifference } from '../util/timeDifference'
 import type { Playlist } from '../util/types'
 import styles from '../styles/Playlist.module.css'
+import Link from 'next/link'
 
 type Props = {
   playlist: Playlist
@@ -15,6 +16,8 @@ function PlayListPreview({ playlist }: Props) {
   // convert image set to four images in an array
   const imagePreviews = Array.from(images).slice(0, 4)
   return (
+    <Link href={`/playlist/${playlist.id}`}>
+    
     <div className={styles['playlist-preview']}>
       <div className={styles['images']}>
         {imagePreviews.map((image: string, index: number) => (
@@ -36,6 +39,7 @@ function PlayListPreview({ playlist }: Props) {
         </p>
       </div>
     </div>
+    </Link>
   )
 }
 
