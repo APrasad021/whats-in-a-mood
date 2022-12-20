@@ -5,9 +5,13 @@ import { createPlaylistName } from '../util/createPlaylistName'
 import SpotifyLogo from '../assets/spotify_logo_v1.svg'
 import Image from 'next/image'
 import Toastify from 'toastify-js'
+import { SpotifySong } from '../util/types'
 
+type Props = {
+  songProps?: SpotifySong[] 
+}
 // TODO
-const AddPlaylistButton = () => {
+const AddPlaylistButton = ({ songProps }: Props) => {
   const { createPlaylistOnSpotify, songs, initialPlaylistDescription } =
     useSiteContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -21,10 +25,12 @@ const AddPlaylistButton = () => {
     setDesciption('\n\nCreated on whatsinamood.com')
   }, [initialPlaylistDescription])
 
+  const currentSongs = songProps || songs
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     let songsIds = []
-    for (const song of songs) if (song.uri) songsIds.push(song.uri)
+    for (const song of currentSongs) if (song.uri) songsIds.push(song.uri)
     const playlistData = {
       playlistData: {
         name: name,

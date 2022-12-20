@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-// import AddPlaylistButton from "../../components/AddPlaylistButton"
+import AddPlaylistButton from "../../components/AddPlaylistButton"
 import GenerateAgainButton from "../../components/GenerateAgainButton"
 import { useSiteContext } from "../../context/Context"
 import { createPlaylistName } from "../../util/createPlaylistName"
@@ -28,7 +28,7 @@ export function Playlist() {
         <div>
           <p>Preview the songs and add the generated playlist to your account!</p>
           <div className={styles.buttons}>
-            {/* <AddPlaylistButton /> */}
+            <AddPlaylistButton songProps={playlist.songs} />
             <GenerateAgainButton />
           </div>
         </div>

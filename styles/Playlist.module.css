@@ -30,6 +30,22 @@
   max-height: 175px;
 }
 
+.playlist-preview_info {
+  margin-top: 10px;
+}
+
+.playlist-preview__name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.playlist-preview__timestamp {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0;
+}
+
 .image {
   height: 80px;
   width: 80px;

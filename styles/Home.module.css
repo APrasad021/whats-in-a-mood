@@ -132,3 +132,9 @@
   text-align: center;
   margin-top: 24px;
 }
+
+.playlist-container__title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+}

@@ -20,6 +20,9 @@ export default function Home({}) {
       <PlaylistForm />
       {playlists.length > 0 && (
         <div className={styles['playlist-container']}>
+            <h2 className={styles['playlist-container__title']}>
+              Previously generated playlists
+            </h2>
           {playlists
             .map((playlist, index) => (
               <PlayListPreview key={index} playlist={playlist} />

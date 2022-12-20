@@ -32,8 +32,8 @@ function PlayListPreview({ playlist }: Props) {
         ))}
       </div>
       <div className="playlist-preview__info">
-        <h2 className="playlist-preview__info__name">{playlist.name}</h2>
-        <p className="playlist-preview__info__description">
+        <h2 className={styles["playlist-preview__name"]}>{playlist.name}</h2>
+        <p className={styles["playlist-preview__timestamp"]}>
           Generated{' '}
           {timeDifference(new Date(), new Date(playlist.timeGenerated))}
         </p>
