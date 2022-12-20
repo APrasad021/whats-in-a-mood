@@ -59,17 +59,19 @@ export const SiteContextProvider = ({ children }: any) => {
     setLoading(false)
   }
 
-  const createPlaylistOnSpotify = async (data: CreatePlaylistData) => {
+  const createPlaylistOnSpotify = async (data: CreatePlaylistData): Promise<boolean> => {
     const response = await fetch('/api/playlist/upload', {
       method: 'POST',
       body: JSON.stringify(data),
     })
     const responseData = await response.json()
+    if (!responseData.id) return false
     setPlaylistId(responseData.id)
     setPlaylistDescription(data.playlistData.description)
     setNumSongs(data.songs.length)
     setPlaylistName(data.playlistData.name)
     setPlayListCreationTimestamp(Date.now())
+    return true
   }
 
   const archiveCurrentPlaylist = () => {

@@ -7,8 +7,8 @@ export default function GenerateAgainButton() {
   const router = useRouter()
 
   const handleClick = () => {
-    archiveCurrentPlaylist()
     router.push('/')
+    archiveCurrentPlaylist()
   }
 
   return (

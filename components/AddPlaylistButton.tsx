@@ -4,6 +4,8 @@ import { useSiteContext } from '../context/Context'
 import { createPlaylistName } from '../util/createPlaylistName'
 import SpotifyLogo from '../assets/spotify_logo_v1.svg'
 import Image from 'next/image'
+import Toastify from 'toastify-js'
+
 // TODO
 const AddPlaylistButton = () => {
   const { createPlaylistOnSpotify, songs, initialPlaylistDescription } =
@@ -12,14 +14,14 @@ const AddPlaylistButton = () => {
   const [name, setPlaylistName] = useState(
     createPlaylistName(initialPlaylistDescription),
   )
-  const [description, setDesciption] = useState('\n\nCreated with GPT-3')
+  const [description, setDesciption] = useState('\n\nCreated on whatsinamood.com')
 
   useEffect(() => {
     setPlaylistName(createPlaylistName(initialPlaylistDescription))
-    setDesciption('\n\nCreated with GPT-3')
+    setDesciption('\n\nCreated on whatsinamood.com')
   }, [initialPlaylistDescription])
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     let songsIds = []
     for (const song of songs) if (song.uri) songsIds.push(song.uri)
@@ -30,7 +32,20 @@ const AddPlaylistButton = () => {
       },
       songs: songsIds,
     }
-    createPlaylistOnSpotify(playlistData)
+    const isPlaylistSaved = await createPlaylistOnSpotify(playlistData)
+    // @ts-ignore
+    if (isPlaylistSaved) {
+      Toastify({
+        text: `${name} added to your Spotify account!!`,
+        duration: 3000
+      }).showToast();
+      setIsModalOpen(false)
+    } else {
+      Toastify({
+        text: `Something went wrong. Please try again.`,
+        duration: 3000
+      }).showToast();
+    }
   }
 
   const handleDescriptionChange = (
@@ -50,24 +65,25 @@ const AddPlaylistButton = () => {
         // the form should have a text area for the user to describe the playlist
         <div className={styles.modal}>
           <div className={styles['modal-content']}>
-            <div className="modal-header">
+            <div className={styles["modal-header"]}>
               <h2>Create a new playlist</h2>
-              <button onClick={() => setIsModalOpen(false)}>X</button>
+              <button className={styles["modal-close"]} onClick={() => setIsModalOpen(false)}>X</button>
             </div>
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
                 <label>
                   Playlist Name
-                  <input type="text" value={name} onChange={handleNameChange} />
+                  <input type="text" value={name} onChange={handleNameChange} className={styles.input} />
                 </label>
                 <label>
                   Playlist Description
                   <textarea
                     value={description}
                     onChange={handleDescriptionChange}
+                    className={styles.textarea}
                   />
                 </label>
-                <button type="submit">Create Playlist</button>
+                <button type="submit" className={styles.submit}>Create Playlist</button>
               </form>
             </div>
           </div>
@@ -75,15 +91,15 @@ const AddPlaylistButton = () => {
       )}
       <div className="new-playlist-button">
         <button onClick={() => setIsModalOpen(true)} className={styles['add-spotify-button']}>
-        <div className={styles['add-spotify-button-content']}>
-              <p>Add Playlist to </p>{' '}
-              <Image
-                alt={'spotify logo'}
-                src={SpotifyLogo}
-                height={20}
-                width={20}
-              />
-            </div>
+          <div className={styles['add-spotify-button-content']}>
+            <p>Add Playlist to </p>{' '}
+            <Image
+              alt={'spotify logo'}
+              src={SpotifyLogo}
+              height={20}
+              width={20}
+            />
+          </div>
         </button>
       </div>
     </>

@@ -12,11 +12,6 @@ import { createPlaylistName } from '../util/createPlaylistName'
 export default function Results({ }) {
   const { loading, songs, initialPlaylistDescription } = useSiteContext()
 
-  if (!loading && songs.length === 0) {
-    if (typeof window === 'undefined') return null;
-    window.open('/', '_self');
-  }
-
   if (loading) return <div className={styles['loading-container']}><Rings
     height="120"
     width="120"
