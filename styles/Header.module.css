@@ -11,10 +11,11 @@
 .sign-out-spotify-button {
   display: flex;
   justify-content: center;
-  width: 100px;
+  min-width: 100px;
   align-items: center;
   margin-left: auto;
   margin-right: 16px;
+  max-width: 150px;
 }
 
 .sign-in-spotify-button-content {
@@ -49,7 +50,7 @@
   .header-text {
     font-size: 22px;
   }
-  .header p {
+  .sign-in-name {
     display: none;
   }
 }

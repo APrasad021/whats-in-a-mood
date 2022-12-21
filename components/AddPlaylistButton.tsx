@@ -81,27 +81,25 @@ const AddPlaylistButton = ({ songProps }: Props) => {
               </button>
             </div>
             <div className={styles["modal-body"]}>
-                <label>
-                  Playlist Name
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={handleNameChange}
-                    className={styles.input}
-                  />
-                </label>
-                <br />
-                <label>
-                  Playlist Description
-                  <textarea
-                    value={description}
-                    onChange={handleDescriptionChange}
-                    className={styles.textarea}
-                  />
-                </label>
-                <button className={styles.submit} onClick={handleSubmit}>
-                  Create Playlist
-                </button>
+              <p>
+                Playlist Name</p>
+              <input
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+                className={styles.input}
+              />
+              <p>
+                Playlist Description
+              </p>
+              <textarea
+                value={description}
+                onChange={handleDescriptionChange}
+                className={styles.textarea}
+              />
+              <button className={styles.submit} onClick={handleSubmit}>
+                Create Playlist
+              </button>
             </div>
           </div>
         </div>

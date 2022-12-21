@@ -24,7 +24,7 @@ function Header() {
           <h1 className={styles['header-text']}>{"What's in a mood?"}</h1>
         </div>
         <div className={styles['sign-in-content']}>
-          <p>{session.data?.user?.name}</p>
+          <p className={styles['sign-in-name']}>{session.data?.user?.name}</p>
           {/* @ts-ignore */}
           {session.data?.user?.picture && (
             <Image
