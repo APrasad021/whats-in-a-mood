@@ -49,6 +49,9 @@
   .header-text {
     font-size: 22px;
   }
+  .header p {
+    display: none;
+  }
 }
 
 .spotify-pfp {
