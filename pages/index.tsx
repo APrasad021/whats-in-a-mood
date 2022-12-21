@@ -14,7 +14,7 @@ export default function Home({}) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{"What's in a mood"}</title>
+        <title>{"What's in a mood?"}</title>
         <meta name="description" content="Generate a Spotify Playlist" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

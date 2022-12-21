@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <div className={styles['login-content']}>
       <Head>
-        <title>{"What's in a mood"}</title>
+        <title>{"What's in a mood?"}</title>
         <meta name="description" content="Login" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

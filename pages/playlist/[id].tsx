@@ -17,7 +17,7 @@ export function Playlist() {
     return (
       <div>
         <Head>
-          <title>{"What's in a mood"}</title>
+          <title>{"What's in a mood?"}</title>
           <meta name="description" content="Playlist not found" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -28,7 +28,7 @@ export function Playlist() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{"What's in a mood"}</title>
+        <title>{"What's in a mood?"}</title>
         <meta name="description" content="Viewing a playlist" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
