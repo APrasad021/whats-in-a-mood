@@ -8,7 +8,7 @@ import Toastify from 'toastify-js'
 import { SpotifySong } from '../util/types'
 
 type Props = {
-  songProps?: SpotifySong[] 
+  songProps?: SpotifySong[]
 }
 // TODO
 const AddPlaylistButton = ({ songProps }: Props) => {
@@ -18,7 +18,9 @@ const AddPlaylistButton = ({ songProps }: Props) => {
   const [name, setPlaylistName] = useState(
     createPlaylistName(initialPlaylistDescription),
   )
-  const [description, setDesciption] = useState('\n\nCreated on whatsinamood.com')
+  const [description, setDesciption] = useState(
+    '\n\nCreated on whatsinamood.com',
+  )
 
   useEffect(() => {
     setPlaylistName(createPlaylistName(initialPlaylistDescription))
@@ -27,7 +29,7 @@ const AddPlaylistButton = ({ songProps }: Props) => {
 
   const currentSongs = songProps || songs
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault()
     let songsIds = []
     for (const song of currentSongs) if (song.uri) songsIds.push(song.uri)
@@ -43,14 +45,14 @@ const AddPlaylistButton = ({ songProps }: Props) => {
     if (isPlaylistSaved) {
       Toastify({
         text: `${name} added to your Spotify account!!`,
-        duration: 3000
-      }).showToast();
+        duration: 3000,
+      }).showToast()
       setIsModalOpen(false)
     } else {
       Toastify({
         text: `Something went wrong. Please try again.`,
-        duration: 3000
-      }).showToast();
+        duration: 3000,
+      }).showToast()
     }
   }
 
@@ -67,20 +69,28 @@ const AddPlaylistButton = ({ songProps }: Props) => {
   return (
     <>
       {isModalOpen && (
-        // generate a modal here that has a form for the user to fill out
-        // the form should have a text area for the user to describe the playlist
-        <div className={styles.modal}>
-          <div className={styles['modal-content']}>
-            <div className={styles["modal-header"]}>
+        <div className={styles.modal} onClick={() => setIsModalOpen(false)}>
+          <div className={styles['modal-content']} onClick={e => e.stopPropagation()}>
+            <div className={styles['modal-header']}>
               <h2>Create a new playlist</h2>
-              <button className={styles["modal-close"]} onClick={() => setIsModalOpen(false)}>X</button>
+              <button
+                className={styles['modal-close']}
+                onClick={() => setIsModalOpen(false)}
+              >
+                X
+              </button>
             </div>
-            <div className="modal-body">
-              <form onSubmit={handleSubmit}>
+            <div className={styles["modal-body"]}>
                 <label>
                   Playlist Name
-                  <input type="text" value={name} onChange={handleNameChange} className={styles.input} />
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={handleNameChange}
+                    className={styles.input}
+                  />
                 </label>
+                <br />
                 <label>
                   Playlist Description
                   <textarea
@@ -89,14 +99,18 @@ const AddPlaylistButton = ({ songProps }: Props) => {
                     className={styles.textarea}
                   />
                 </label>
-                <button type="submit" className={styles.submit}>Create Playlist</button>
-              </form>
+                <button className={styles.submit} onClick={handleSubmit}>
+                  Create Playlist
+                </button>
             </div>
           </div>
         </div>
       )}
       <div className="new-playlist-button">
-        <button onClick={() => setIsModalOpen(true)} className={styles['add-spotify-button']}>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className={styles['add-spotify-button']}
+        >
           <div className={styles['add-spotify-button-content']}>
             <p>Add Playlist to </p>{' '}
             <Image

@@ -6,3 +6,11 @@
   transform: translate(-50%, -50%);
   min-width: 80%;
 }
+
+.login-title {
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  margin-bottom: 24px
+}

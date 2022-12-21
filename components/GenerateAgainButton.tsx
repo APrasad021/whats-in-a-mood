@@ -13,7 +13,9 @@ export default function GenerateAgainButton() {
 
   return (
     <div>
-      <button className={styles['generate-button']} onClick={handleClick}>Generate Again</button>
+      <button className={styles['generate-button']} onClick={handleClick}>
+        Generate Again
+      </button>
     </div>
   )
 }

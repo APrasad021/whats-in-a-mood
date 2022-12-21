@@ -8,24 +8,27 @@ interface Props {
   center?: boolean
 }
 
-export default function LoginButton({ center = false }: Props ) {
+export default function LoginButton({ center = false }: Props) {
   const { data: session } = useSession()
   if (isAuthenticated(session)) {
     return (
-      <button className={styles['sign-out-spotify-button']} onClick={() => signOut()}>Sign out</button>
+      <button
+        className={styles['sign-out-spotify-button']}
+        onClick={() => signOut()}
+      >
+        Sign out
+      </button>
     )
   }
   return (
-    <button onClick={() => signIn('spotify', { callbackUrl: '/' })} className={styles['sign-in-spotify-button']}>
-        <div className={styles['sign-in-spotify-button-content']}>
-          <p>Sign in with</p>{' '}
-          <Image
-            alt={'spotify logo'}
-            src={SpotifyLogo}
-            height={20}
-            width={20}
-          />
-        </div>
-      </button>
+    <button
+      onClick={() => signIn('spotify', { callbackUrl: '/' })}
+      className={styles['sign-in-spotify-button']}
+    >
+      <div className={styles['sign-in-spotify-button-content']}>
+        <p>Sign in with</p>{' '}
+        <Image alt={'spotify logo'} src={SpotifyLogo} height={20} width={20} />
+      </div>
+    </button>
   )
 }

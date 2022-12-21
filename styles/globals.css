@@ -2,8 +2,13 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: droid sans mono, consolas, monospace;
+  color: #fff;
+  background: rgb(215, 213, 207) !important;
+}
+
+h2 {
+  color: rgb(122, 122, 122);
 }
 
 a {
@@ -30,7 +35,6 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit'] {
-  border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
   color: #ffffff;
@@ -52,10 +56,11 @@ input[type='submit'] {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  font-family: droid sans mono, consolas, monospace;
+  transition: all 0.5s;
 }
 
-.button:hover,
-.button:focus,
+button,
 input[type='button']:hover,
 input[type='button']:focus,
 input[type='reset']:hover,
@@ -63,4 +68,41 @@ input[type='reset']:focus,
 input[type='submit']:hover,
 input[type='submit']:focus {
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.092);
+  transition: all 0.3s;
+}
+
+.button:hover::before {
+  opacity: 0.5;
+  transform: scale(0.5, 0.5);
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.716);
+  transform: scale(1.2, 1.2);
+}
+
+.button:hover::after {
+  opacity: 1;
+  transform: scale(0.9, 0.9);
 }

@@ -1,13 +1,10 @@
 .form-container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
   padding: 20px;
-  color: gray;
   text-align: center;
   margin-top: 24px;
 }
 
-.input {
+/* .input {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -15,9 +12,36 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+} */
+.input {
+  display: block;
+  margin: 2em auto;
+  border: none;
+  padding: 0;
+  width: 30ch;
+  background: repeating-linear-gradient(
+      90deg,
+      dimgrey 0,
+      dimgrey 1ch,
+      transparent 0,
+      transparent 1ch
+    )
+    0 100%/30ch 2px no-repeat;
+  font: 2ch droid sans mono, consolas, monospace;
+  letter-spacing: 0.25ch;
+  text-align: center;
+  color: rgb(57, 57, 57);
 }
 
-.submit {
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+/* .submit {
   width: 100%;
   background-color: #4caf50;
   color: white;
@@ -30,4 +54,51 @@
 
 .submit:hover {
   background-color: #45a049;
+} */
+
+.submit {
+  transition: all 0.5s;
+  position: relative;
+  border-radius: 0px;
+}
+
+.submit:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background-color: rgb(142, 74, 103);;
+  box-shadow: none;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.092);
+  transition: all 0.3s;
+}
+.submit:hover::before {
+  opacity: 0.5;
+  transform: scale(0.5, 0.5);
+}
+.submit::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.716);
+  transform: scale(1.2, 1.2);
+}
+.submit:hover::after {
+  opacity: 1;
+  transform: scale(1, 1);
 }

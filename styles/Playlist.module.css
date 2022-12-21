@@ -28,6 +28,7 @@
 .playlist-preview {
   text-align: center;
   max-height: 175px;
+  padding: 16px 0;
 }
 
 .playlist-preview_info {

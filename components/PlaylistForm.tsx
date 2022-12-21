@@ -10,14 +10,13 @@ function PlaylistForm() {
   const [inputText, setInputText] = useState('')
   const [numSongs, setNumSongs] = useState(10)
 
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value)
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    if (inputText === '') return
     const playlistData = { text: inputText, numSongs: numSongs }
     generateInitialPlaylist(playlistData)
     router.push('/results')
@@ -26,14 +25,17 @@ function PlaylistForm() {
   return (
     <>
       <div>
-        <div className={styles["form-container"]}>
-          <form onSubmit={handleSubmit}>
-            <label>
-              {"What's the mood? Let us know and we'll generate a playlist for you!"}
-              <input value={inputText} onChange={handleInputChange} className={styles.input} maxLength={50} />
-            </label>
-            <input type="submit" value="Submit" className={styles.submit} />
-          </form>
+        <div className={styles['form-container']}>
+          <input
+            value={inputText}
+            onChange={handleInputChange}
+            className={styles.input}
+            maxLength={50}
+            placeholder="What's the mood?"
+          />
+          <button onClick={handleSubmit} className={styles.submit}>
+            Generate Playlist
+          </button>
         </div>
       </div>
     </>
