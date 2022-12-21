@@ -45,6 +45,12 @@
   margin-left: 16px;
 }
 
+@media screen and (max-width: 600px) {
+  .header-text {
+    font-size: 22px;
+  }
+}
+
 .spotify-pfp {
   border-radius: 20px;
 }
